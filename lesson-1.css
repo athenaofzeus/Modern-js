@@ -3,9 +3,15 @@ header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.searchText {
+  font-size: 20px;
 }
 
 .cart-button {
@@ -25,7 +31,7 @@ header {
   background-color: bisque;
 }
 
-.goods-list {
+.good {
   background-color: bisque;
   display: -ms-grid;
   display: grid;
@@ -35,6 +41,25 @@ header {
   width: 70%;
   margin: 0 auto;
   margin-top: 20px;
+}
+
+.total,
+.basket {
+  background-color: bisque;
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.basketHead {
+  text-align: center;
+}
+
+main {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 2fr 1fr;
+      grid-template-columns: 2fr 1fr;
 }
 
 .goods-item {
