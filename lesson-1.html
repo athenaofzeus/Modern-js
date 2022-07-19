@@ -6,18 +6,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./lesson-1.css">
-    <script defer src="./lesson-2.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script defer src="./lesson-5.js"></script>
     <title>eShop</title>
 </head>
 
 <body>
-    <header>
-        <button class="cart-button" type="button">Корзина</button>
-    </header>
-    <main>
-        <div class="goods-list"></div>
-    </main>
+    <div class="root">
+        <header>
+            <div class="serchBox">
+                <input type="text" class="searchText" placeholder="Имя товара" v-model="search">
+                <button class="searchBtn" type="button" v-on:click="filterItems">Искать</button>
+            </div>
+            <button class="cart-button" type="button">Корзина</button>
+        </header>
+        <main>
+            <div class="goodsList">
+                <div class="good" v-for="item in filteredItems" v-if="filteredItems.length > 0">
+                    <h3>{{ item.product_name}}</h3>
+                    <p>{{ item.price }}</p>
+                </div>
+                <div class="good" v-else>Нет данных</div>
+            </div>
+            <div class="basket" v-show="isVisibleCart">
+                <h4 class="basketHead">Товары корзины</h4>
+            </div>
+            <div class="total">Итог: {{ total }}</div>
+        </main>
 
+    </div>
 </body>
 
 </html>
