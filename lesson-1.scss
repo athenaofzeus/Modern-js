@@ -1,10 +1,15 @@
 header {
     border: 2px solid bisque;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+    align-items: center;
 }
 
-.cart-button {
+.searchText {
+    font-size: 20px;
+}
+
+.searchBtn {
     color: black;
     background-color: white;
     padding: 16px 32px;
@@ -20,7 +25,7 @@ header {
     }
 }
 
-.goods-list {
+.good {
     background-color: bisque;
     display: grid;
     grid-template-columns: repeat(2, 2fr);
@@ -28,6 +33,23 @@ header {
     width: 70%;
     margin: 0 auto;
     margin-top: 20px;
+}
+
+.total,
+.basket {
+    background-color: bisque;
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.basketHead {
+    text-align: center;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
 }
 
 .goods-item {

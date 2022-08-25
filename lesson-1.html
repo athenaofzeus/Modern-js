@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./lesson-1.css">
     <script src="https://unpkg.com/vue@next"></script>
-    <script defer src="./lesson-5.js"></script>
+    <script defer src="./lesson-6.js"></script>
     <title>eShop</title>
 </head>
 
@@ -15,22 +15,18 @@
     <div class="root">
         <header>
             <div class="serchBox">
-                <input type="text" class="searchText" placeholder="Имя товара" v-model="search">
-                <button class="searchBtn" type="button" v-on:click="filterItems">Искать</button>
+                <search-field v-model="search"></search-field>
+                <cust-button v-on:click="filterItems">Искать</cust-button>
             </div>
-            <button class="cart-button" type="button">Корзина</button>
+            <button class="cart-button" type="button" v-on:click="setVisionCard">Корзина</button>
         </header>
         <main>
             <div class="goodsList">
-                <div class="good" v-for="item in filteredItems" v-if="filteredItems.length > 0">
-                    <h3>{{ item.product_name}}</h3>
-                    <p>{{ item.price }}</p>
-                </div>
-                <div class="good" v-else>Нет данных</div>
+                <goods-item v-for="item in filteredItems" v-if="filteredItems.length > 0" v-bind:item="item">
+                </goods-item>
+                <err-mess v-else>Нет данных</err-mess>
             </div>
-            <div class="basket" v-show="isVisibleCart">
-                <h4 class="basketHead">Товары корзины</h4>
-            </div>
+            <basket-goods v-bind:isvisiblecart="isVisibleCart"></basket-goods>
             <div class="total">Итог: {{ total }}</div>
         </main>
 

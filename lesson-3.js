@@ -75,7 +75,6 @@ class BasketList {
     fetchBaskItems(callback) {
         service(getBaskItems, (data) => {
             this.prodList = data;
-
             callback()
         });
     }

@@ -20,7 +20,7 @@ class GoodsList {
     list = [];
     fetchGoods(url) {
         let promise = fetch(url);
-        goodsList.render(promise);
+        this.render(promise);
     }
     render(promise) {
         promise.then((resp) => {
