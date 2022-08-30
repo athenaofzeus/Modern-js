@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./lesson-1.css">
     <script src="https://unpkg.com/vue@next"></script>
-    <script defer src="./lesson-6.js"></script>
+    <script defer src="lesson-7.js"></script>
     <title>eShop</title>
 </head>
 
@@ -26,7 +26,8 @@
                 </goods-item>
                 <err-mess v-else>Нет данных</err-mess>
             </div>
-            <basket-goods v-bind:isvisiblecart="isVisibleCart"></basket-goods>
+            <basket-goods v-bind:isvisiblecart="isVisibleCart" v-for="elem in basketList" v-bind:elem="elem">
+            </basket-goods>
             <div class="total">Итог: {{ total }}</div>
         </main>
 

@@ -1,9 +1,12 @@
-import express from 'express';
-baseUrl = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses/';
+baseUrl = 'http://localhost:8000/';
 
-const getItems = `${baseUrl}catalogData.json`;
-const getBaskItems = `${baseUrl}getBasket.json`;
+const GET_GOODS_ITEMS = `${baseUrl}goods`;
+const GET_BASKET = `${baseUrl}basket`;
 
+function service(url) {
+    return fetch(url)
+        .then((res) => res.json())
+}
 
 function initialize() {
 
@@ -13,15 +16,14 @@ function initialize() {
                 items: [],
                 filteredItems: [],
                 search: '',
-                isVisibleCart: true
+                isVisibleCart: true,
+                basketList: []
             }
         },
         methods: {
-            fetchGoods(url) {
+            fetchGoods() {
                 //функция записывает в items и filteredItems
-                fetch(url).then((resp) => {
-                    return resp.json()
-                }).then((data) => {
+                service(GET_GOODS_ITEMS).then((data) => {
                     this.items = data;
                     this.filteredItems = data;
                 });
@@ -33,7 +35,14 @@ function initialize() {
             },
             setVisionCard() {
                 return this.isVisibleCart = !this.isVisibleCart
-            }
+            },
+            fetchBasket() {
+                //функция записывает в basket
+                service(GET_BASKET).then((data) => {
+                    this.basketList = data;
+                    console.log(this.basketList)
+                });
+            },
         },
         computed: {
             total() {
@@ -45,7 +54,8 @@ function initialize() {
         },
         mounted() {
             //вызывается, когда все приложение отрендерилось
-            this.fetchGoods(getItems)
+            this.fetchGoods();
+            this.fetchBasket();
         }
     });
 
@@ -62,11 +72,14 @@ function initialize() {
 
     const basketGoods = app.component('basket-goods', {
         props: [
-            'isvisiblecart'
+            'isvisiblecart',
+            'elem'
         ],
         template:
             `<div class="basket" v-show="isvisiblecart">
                 <h4 class="basketHead">Товары корзины</h4>
+                <div class="basketItem">{{ elem.data.product_name }}, {{ elem.data.price }} * {{ elem.count }}</div>
+                <div class="basketTotal"> {{elem.data.price * elem.count}}</div>
             </div>`
     });
 
