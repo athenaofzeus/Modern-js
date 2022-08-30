@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./lesson-1.css">
+    <script src="https://unpkg.com/vue@next"></script>
+    <script defer src="lesson-7.js"></script>
+    <title>eShop</title>
+</head>
+
+<body>
+    <div class="root">
+        <header>
+            <div class="serchBox">
+                <search-field v-model="search"></search-field>
+                <cust-button v-on:click="filterItems">Искать</cust-button>
+            </div>
+            <button class="cart-button" type="button" v-on:click="setVisionCard">Корзина</button>
+        </header>
+        <main>
+            <div class="goodsList">
+                <goods-item v-for="item in filteredItems" v-if="filteredItems.length > 0" v-bind:item="item">
+                </goods-item>
+                <err-mess v-else>Нет данных</err-mess>
+            </div>
+            <basket-goods v-bind:isvisiblecart="isVisibleCart" v-for="elem in basketList" v-bind:elem="elem">
+            </basket-goods>
+            <div class="total">Итог: {{ total }}</div>
+        </main>
+
+    </div>
+</body>
+
+</html>
